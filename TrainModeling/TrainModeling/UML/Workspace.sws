@@ -4,6 +4,7 @@
 
 <Workspace>
 	<Local Expanded="Yes">
+		<Model Expanded="Yes" ID="{A960E7B7-0157-43CA-944B-00DF1B41F7EF}" Loaded="No" Name="Model" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Model.oom"/>
 		<Model Expanded="Yes" ID="{A960E7B7-0157-43CA-944B-00DF1B41F7EF}" Name="Model" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Model.oom"/>
 	</Local>
 	<BrowserModule Name="Repository"/>

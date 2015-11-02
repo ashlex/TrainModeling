@@ -25,9 +25,7 @@ namespace TrainModeling
             Console.WriteLine(res.ResourceManager.GetString("test"));
 
 
-
 			Console.Read();
-
 			// Set up a simple configuration that logs on the console.
 			BasicConfigurator.Configure();
 			Vehicle v=new SimpleTrain();
