@@ -73,13 +73,13 @@
   <ItemGroup>
     <Compile Include="Base.cs" />
     <Compile Include="BezierCurve.cs" />
-    <Compile Include="Component.cs" />
-    <Compile Include="IComposite.cs" />
+    <Compile Include="Road\Component.cs" />
+    <Compile Include="Road\IComposite.cs" />
     <Compile Include="Coordinate.cs" />
-    <Compile Include="IComponent.cs" />
-    <Compile Include="IMovingStrategy.cs" />
-    <Compile Include="IRoad.cs" />
-    <Compile Include="IVehicle.cs" />
+    <Compile Include="Road\IComponent.cs" />
+    <Compile Include="Vehicle\IMovingStrategy.cs" />
+    <Compile Include="Road\IRoad.cs" />
+    <Compile Include="Vehicle\IVehicle.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,10 +93,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>res.resx</DependentUpon>
     </Compile>
-    <Compile Include="Road.cs" />
-    <Compile Include="SimpleTrain.cs" />
-    <Compile Include="SimpleTrainMovingStrategy.cs" />
-    <Compile Include="Vehicle.cs" />
+    <Compile Include="Road\Road.cs" />
+    <Compile Include="Vehicle\SimpleTrain.cs" />
+    <Compile Include="Vehicle\SimpleTrainMovingStrategy.cs" />
+    <Compile Include="Vehicle\Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
