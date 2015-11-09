@@ -2,6 +2,6 @@
 {
 	public abstract class Component:IComponent
 	{
-		public int State { get; }
+		public virtual int State { get; }
 	}
 }
