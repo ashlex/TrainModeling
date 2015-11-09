@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,23 +14,32 @@ namespace MakeReserve
 	{
 		static void Main(string[] args)
 		{
+
 			if (args.Any() && args.Contains("-r"))
 			{
-				Console.WriteLine("Path Source:" + Properties.Settings.Default.PathFrom);
-				while (true)
+				if (args.Contains("-top"))
 				{
-					string pathWhere = Path.Combine(Properties.Settings.Default.PathWhere,
-				   DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss"));
+					ConsoleConfig consoleConfig=new ConsoleConfig();
+					consoleConfig.setTop();
+				}
+				if (args.Contains("-r"))
+				{
+					Console.WriteLine("Path Source:" + Properties.Settings.Default.PathFrom);
+					while (true)
+					{
+						string pathWhere = Path.Combine(Properties.Settings.Default.PathWhere,
+							DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss"));
 
-					Console.WriteLine("Path Dest:" + pathWhere);
-					Console.WriteLine("Please wait...");
+						Console.WriteLine("Path Dest:" + pathWhere);
+						Console.WriteLine("Please wait...");
 
-					DirectoryCopy(Properties.Settings.Default.PathFrom, pathWhere, true);
+						DirectoryCopy(Properties.Settings.Default.PathFrom, pathWhere, true);
 
-					Console.WriteLine("Time to sleep:"+ (Properties.Settings.Default.TimeRepeat/1000)+" s");
-					Console.Write("Sleep...");
-					Console.WriteLine();
-					Thread.Sleep(Properties.Settings.Default.TimeRepeat);
+						Console.WriteLine("Time to sleep:" + (Properties.Settings.Default.TimeRepeat/1000) + " s");
+						Console.Write("Sleep...");
+						Console.WriteLine();
+						Thread.Sleep(Properties.Settings.Default.TimeRepeat);
+					}
 				}
 			}
 
@@ -48,6 +59,7 @@ namespace MakeReserve
 				Console.Read();
 			}
 		}
+
 
 		private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
 		{
@@ -86,5 +98,6 @@ namespace MakeReserve
 				}
 			}
 		}
+
 	}
 }

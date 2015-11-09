@@ -1,6 +1,6 @@
 ﻿namespace TrainModeling
 {
-	public abstract class Component
+	public abstract class Component:IComponent
 	{
 		 
 	}

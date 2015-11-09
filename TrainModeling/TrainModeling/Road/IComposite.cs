@@ -5,10 +5,10 @@ namespace TrainModeling
 {
 	public class Composite:Component
 	{
-		private readonly List<Component> _components=new List<Component>();
+		private readonly List<IComponent> _components=new List<IComponent>();
 		private static readonly ILog _log = LogManager.GetLogger(typeof(Composite));
 
-		public bool Add(Component component)
+		public bool Add(IComponent component)
 		{
 			if (_components.Contains(component))
 			{
@@ -19,7 +19,7 @@ namespace TrainModeling
 			return true;
 		}
 
-		public bool Remove(Component component)
+		public bool Remove(IComponent component)
 		{
 			if (component == null)
 			{

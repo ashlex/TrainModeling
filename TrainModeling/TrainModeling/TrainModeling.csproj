@@ -73,10 +73,13 @@
   <ItemGroup>
     <Compile Include="Base.cs" />
     <Compile Include="BezierCurve.cs" />
+    <Compile Include="ICoordinate.cs" />
     <Compile Include="Road\Component.cs" />
     <Compile Include="Road\IComposite.cs" />
-    <Compile Include="Coordinate.cs" />
+    <Compile Include="Coordinate2D.cs" />
     <Compile Include="Road\IComponent.cs" />
+    <Compile Include="Road\ITurnOuts.cs" />
+    <Compile Include="Road\TurnOut.cs" />
     <Compile Include="Vehicle\IMovingStrategy.cs" />
     <Compile Include="Road\IRoad.cs" />
     <Compile Include="Vehicle\IVehicle.cs" />

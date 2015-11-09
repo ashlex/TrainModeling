@@ -2,10 +2,9 @@
 
 namespace TrainModeling
 {
-	public interface IRoad
+	public interface IRoad:IComponent
 	{
-		Point GetPointBegin();
-		Point GetPointEnd();
-		Point GetCoordinate(double distance);
+		ICoordinate GetPointBegin();
+		ICoordinate GetCoordinate(double distance);
 	}
 }

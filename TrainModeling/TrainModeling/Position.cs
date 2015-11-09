@@ -2,7 +2,7 @@
 {
 	public class Position
 	{
-		public Coordinate ValueCoordinate { get; set; }
+		public ICoordinate ValueCoordinate { get; set; }
 
 		private IRoad _road;
 
