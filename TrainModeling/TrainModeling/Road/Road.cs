@@ -17,5 +17,7 @@ namespace TrainModeling
 		{
 			throw new NotImplementedException();
 		}
+
+		public override int State { get; }
 	}
 }

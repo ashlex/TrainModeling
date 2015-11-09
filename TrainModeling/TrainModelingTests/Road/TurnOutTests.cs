@@ -17,13 +17,23 @@ namespace TrainModeling.Tests
 		[TestMethod()]
 		public void CangeStateTestWihtDefaultConstructor()
 		{
+			int s = 0;
+
+			var handler = new TurnOutsEventHandler(o =>
+			{
+				s = ((ITurnOuts)o).State;
+			});
 			ITurnOuts turnOuts=new TurnOut();
-			Assert.AreEqual(turnOuts.State,(int)TurOutsState.NO_ROAD);
+			turnOuts.TimeOfChange = 10;
+			turnOuts.StateChanged += handler;
+			Assert.AreEqual(turnOuts.State,(int)TurOutsState.NOT_DEFINE);
 			turnOuts.CangeState();
-			Assert.AreEqual(turnOuts.State, (int)TurOutsState.NO_ROAD);
-			Thread.Sleep(6000);
-			Assert.AreEqual((int)TurOutsState.NO_ROAD,turnOuts.State);
+			Assert.AreEqual((int)TurOutsState.NOT_DEFINE, s);
+			Assert.AreEqual(turnOuts.State, (int)TurOutsState.NOT_DEFINE);
+			Thread.Sleep(20);
+			Assert.AreEqual((int)TurOutsState.NOT_DEFINE,turnOuts.State);
 		}
+
 		[TestMethod()]
 		public void CangeStateTestConstructorWithTwoArg()
 		{

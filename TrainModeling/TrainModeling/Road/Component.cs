@@ -1,7 +1,7 @@
 ﻿namespace TrainModeling
 {
-	public abstract class Component:IComponent
+	public abstract class Component:Base,IComponent
 	{
-		public virtual int State { get; }
+		public abstract int State { get; }
 	}
 }
