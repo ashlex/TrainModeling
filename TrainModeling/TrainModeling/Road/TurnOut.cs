@@ -14,7 +14,7 @@ namespace TrainModeling
 	public class TurnOut : Composite,ITurnOuts
 	{
 		private TurOutsState _state=TurOutsState.NO_ROAD;
-		public int State { get { return (int)_state; } }
+		public new int State { get { return (int)_state; } }
 
 		public TurnOut(IRoad leftRoad, IRoad rightRoad)
 		{

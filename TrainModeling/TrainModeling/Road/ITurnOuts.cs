@@ -1,6 +1,6 @@
 ﻿namespace TrainModeling
 {
-	public interface ITurnOuts
+	public interface ITurnOuts:IComponent
 	{
 		void CangeState();
 	}

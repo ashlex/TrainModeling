@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TrainModeling.Tests
@@ -14,7 +15,13 @@ namespace TrainModeling.Tests
 		[TestMethod()]
 		public void CangeStateTest()
 		{
-			Assert.Fail();
+			ITurnOuts turnOuts=new TurnOut();
+			Console.WriteLine(turnOuts.State);
+			Assert.AreEqual(turnOuts.State,(int)TurOutsState.NO_ROAD);
+			turnOuts.CangeState();
+			Assert.AreEqual(turnOuts.State, (int)TurOutsState.NO_ROAD);
+			Thread.Sleep(6000);
+			Assert.AreEqual(turnOuts.State,(int)TurOutsState.RIGHT_ROAD);
 		}
 	}
 }

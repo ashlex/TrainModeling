@@ -75,7 +75,7 @@
     <Compile Include="BezierCurve.cs" />
     <Compile Include="ICoordinate.cs" />
     <Compile Include="Road\Component.cs" />
-    <Compile Include="Road\IComposite.cs" />
+    <Compile Include="Road\Composite.cs" />
     <Compile Include="Coordinate2D.cs" />
     <Compile Include="Road\IComponent.cs" />
     <Compile Include="Road\ITurnOuts.cs" />
