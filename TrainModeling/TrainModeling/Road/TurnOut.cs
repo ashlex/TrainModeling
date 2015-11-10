@@ -5,22 +5,15 @@ using JetBrains.Annotations;
 
 namespace TrainModeling
 {
-	public class TurnOut : Composite, ITurnOuts
+	public class TurnOut : Composite, IRoadNode
 	{
-		/// <summary>
-		///     This should be allocated to the strategy
-		/// </summary>
-		public void CangeState()
+		public void ChangeState()
 		{
 			if (_state != TurOutsState.NOT_DEFINE)
 			{
 				_previousState = _state;
-				SetState(TurOutsState.NO_ROAD);
+				OnStateChanged(TurOutsState.NO_ROAD);
 				new Task(Run, this).Start();
-			}
-			else
-			{
-				if (StateChanged != null) StateChanged(this);
 			}
 		}
 
@@ -32,32 +25,31 @@ namespace TrainModeling
 
 			var turnOut = (TurnOut) sender;
 			Thread.Sleep(turnOut.TimeOfChange);
-			turnOut.SetState(turnOut._previousState != TurOutsState.NO_ROAD
+			turnOut.OnStateChanged(turnOut._previousState != TurOutsState.NO_ROAD
 				? (turnOut._previousState == TurOutsState.LEFT_ROAD ? TurOutsState.RIGHT_ROAD : TurOutsState.LEFT_ROAD)
 				: turnOut._state);
-
 			#endregion
 		}
 
-		protected void SetState(TurOutsState state)
+		protected virtual void OnStateChanged(TurOutsState state)
 		{
 			_state = state;
-			if (StateChanged != null) StateChanged(this);
+			StateChanged?.Invoke(this,null);
 		}
 
 		#region Constructors
 
-		public TurnOut([NotNull] IRoad leftRoad, [NotNull] IRoad rightRoad, TurOutsState state)
+		public TurnOut([NotNull] IRoadSection leftRoadSection, [NotNull] IRoadSection rightRoadSection, TurOutsState state)
 		{
-			if (leftRoad == null || rightRoad == null) throw new ArgumentNullException();
-			if (leftRoad.GetPointBegin() != rightRoad.GetPointBegin()) throw new ArgumentException();
-			Add(leftRoad);
-			Add(rightRoad);
+			if (leftRoadSection == null || rightRoadSection == null) throw new ArgumentNullException();
+			if (leftRoadSection.GetPointBegin() != rightRoadSection.GetPointBegin()) throw new ArgumentException();
+			Add(leftRoadSection);
+			Add(rightRoadSection);
 			_state = state;
 		}
 
-		public TurnOut([NotNull] IRoad leftRoad, [NotNull] IRoad rightRoad)
-			: this(leftRoad, rightRoad, TurOutsState.LEFT_ROAD)
+		public TurnOut([NotNull] IRoadSection leftRoadSection, [NotNull] IRoadSection rightRoadSection)
+			: this(leftRoadSection, rightRoadSection, TurOutsState.LEFT_ROAD)
 		{
 		}
 
@@ -73,7 +65,8 @@ namespace TrainModeling
 		private TurOutsState _previousState = TurOutsState.NO_ROAD;
 		private TurOutsState _state;
 		public int TimeOfChange { get; set; }
-		public event TurnOutsEventHandler StateChanged;
+
+		public event EventHandler StateChanged;
 
 		public override int State
 		{
@@ -82,8 +75,7 @@ namespace TrainModeling
 
 		#endregion
 	}
-
-	public delegate void TurnOutsEventHandler(object sender);
+	
 
 	public enum TurOutsState
 	{
