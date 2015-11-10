@@ -82,10 +82,15 @@
     <Compile Include="Road\Component.cs" />
     <Compile Include="Road\Composite.cs" />
     <Compile Include="Road\IComponent.cs" />
-    <Compile Include="Road\ITurnOuts.cs" />
+    <Compile Include="Road\IComposite.cs" />
+    <Compile Include="Road\ITrafficLightStrategy.cs" />
+    <Compile Include="Road\IRoadNode.cs" />
+    <Compile Include="Road\RoadSection.cs" />
+    <Compile Include="Road\TrafficLight.cs" />
+    <Compile Include="Road\TrafficLightStrategy.cs" />
     <Compile Include="Road\TurnOut.cs" />
     <Compile Include="Vehicle\IMovingStrategy.cs" />
-    <Compile Include="Road\IRoad.cs" />
+    <Compile Include="Road\IRoadSection.cs" />
     <Compile Include="Vehicle\IVehicle.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />

@@ -2,8 +2,9 @@
 
 namespace TrainModeling
 {
-	public interface IRoad:IComponent
+	public interface IRoadSection:IComponent
 	{
+		double Length { get; }
 		ICoordinate GetPointBegin();
 		ICoordinate GetCoordinate(double distance);
 	}

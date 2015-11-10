@@ -4,11 +4,11 @@
 	{
 		public ICoordinate ValueCoordinate { get; set; }
 
-		private IRoad _road;
+		private IRoadSection _roadSection;
 
 		public override string ToString()
 		{
-			return "R:"+_road+ValueCoordinate;
+			return "R:"+_roadSection+ValueCoordinate;
 		}
 	}
 }
