@@ -5,7 +5,7 @@
 		private string s1;
 		private string s2;
 		private string s3;
-		private string s4;
-		private string s5;
+		private string s7;
+		private string s8;
 	}
 }
