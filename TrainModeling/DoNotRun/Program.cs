@@ -15,6 +15,7 @@ namespace DoNotRun
 			{
 				Cursor.Position = new System.Drawing.Point(rnd.Next(0, x), rnd.Next(0, y));
 			}
+
 		}
 
 		private static int Gcd(int a, int b)

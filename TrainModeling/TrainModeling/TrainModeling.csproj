@@ -77,6 +77,10 @@
   <ItemGroup>
     <Compile Include="Base.cs" />
     <Compile Include="BezierCurve.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Commands\CommandExecutor.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\StartMovingCommand.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="ICoordinate.cs" />
     <Compile Include="Road\Component.cs" />
@@ -112,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="app.manifest" />
     <None Include="Doc\Documentation.docx" />
     <None Include="packages.config" />
     <None Include="UML\Model.oob" />
