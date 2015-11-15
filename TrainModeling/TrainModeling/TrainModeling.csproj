@@ -116,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="app.manifest" />
     <None Include="Doc\Documentation.docx" />
     <None Include="packages.config" />
     <None Include="UML\Model.oob" />
