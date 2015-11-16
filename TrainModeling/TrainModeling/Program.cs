@@ -29,7 +29,7 @@ namespace TrainModeling
 			// Set up a simple configuration that logs on the console.
 			BasicConfigurator.Configure();
 			Vehicle v=new SimpleTrain();
-//			Position pos = new Position {ValueCoordinate = new Coordinate (new []{0, 0})};
+//			Position pos = new Position {ValueCoordinate = new Coordinate2D (new []{0, 0})};
 //			v.Position = pos;
 			IMovingStrategy ms=new SimpleTrainMovingStrategy(v);
 			v.MovingStrategy = ms;

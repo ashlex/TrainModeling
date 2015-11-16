@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace TrainModeling
 {
-	public class TrafficLight : Component,IRoadNode
+	public class TrafficLight : Component,IVariable
 	{
 
 		public void ChangeState()
@@ -27,7 +27,7 @@ namespace TrainModeling
 
 		#region Fields and properties
 		
-		private readonly TrafficLightStrategy _changeStrategy;
+		private readonly IVariableChangingStrategy<TrafficLightState> _changeStrategy;
 		private TrafficLightState _state = TrafficLightState.UNDEFINED;
 		public event EventHandler StateChanged;
 		public int TimeOfChange { get; set; }

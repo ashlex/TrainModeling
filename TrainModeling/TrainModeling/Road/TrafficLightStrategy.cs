@@ -1,6 +1,6 @@
 ﻿namespace TrainModeling
 {
-	public class TrafficLightStrategy:ITrafficLightStrategy
+	public class TrafficLightStrategy:IVariableChangingStrategy<TrafficLightState>
 	{
 		private readonly TrafficLight _trafficLight;
 		private TrafficLightState _trafficLightState;

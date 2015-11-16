@@ -2,7 +2,7 @@
 
 namespace TrainModeling
 {
-	public interface IRoadNode:IComponent
+	public interface IVariable
 	{
 		event EventHandler StateChanged;
 		int TimeOfChange { get; set; }

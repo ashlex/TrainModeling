@@ -2,7 +2,7 @@
 
 namespace TrainModeling
 {
-	public interface IRoadSection:IComponent
+	public interface IRoadSection:IVariable,IComponent
 	{
 		double Length { get; }
 		ICoordinate GetPointBegin();

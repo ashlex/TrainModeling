@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace TrainModeling
 {
-	public class Road : Composite, IRoadSection
+	public class Road : Composite
 	{
 		public ICoordinate GetPointBegin()
 		{

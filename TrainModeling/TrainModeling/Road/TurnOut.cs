@@ -5,7 +5,8 @@ using JetBrains.Annotations;
 
 namespace TrainModeling
 {
-	public class TurnOut : Composite, IRoadNode
+	public interface ITurnOut : IComposite, IVariable { }
+	public class TurnOut : Composite, ITurnOut
 	{
 		public void ChangeState()
 		{
