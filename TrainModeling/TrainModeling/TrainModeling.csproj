@@ -58,6 +58,9 @@
     <Reference Include="log4net">
       <HintPath>..\lib\log4net-1.2.13\bin\net\4.0\release\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Iridium">
+      <HintPath>lib\MathNet.Iridium.dll</HintPath>
+    </Reference>
     <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
       <Private>True</Private>
@@ -81,15 +84,16 @@
     <Compile Include="Commands\CommandExecutor.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\StartMovingCommand.cs" />
-    <Compile Include="Coordinate.cs" />
+    <Compile Include="Coordinate2D.cs" />
     <Compile Include="ICoordinate.cs" />
     <Compile Include="Road\Component.cs" />
     <Compile Include="Road\Composite.cs" />
     <Compile Include="Road\IComponent.cs" />
     <Compile Include="Road\IComposite.cs" />
-    <Compile Include="Road\ITrafficLightStrategy.cs" />
-    <Compile Include="Road\IRoadNode.cs" />
+    <Compile Include="Road\IVariableChangingStrategy.cs" />
+    <Compile Include="Road\IVariable.cs" />
     <Compile Include="Road\RoadSection.cs" />
+    <Compile Include="Road\RoadSectionStrategy.cs" />
     <Compile Include="Road\TrafficLight.cs" />
     <Compile Include="Road\TrafficLightStrategy.cs" />
     <Compile Include="Road\TurnOut.cs" />

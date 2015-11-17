@@ -2,7 +2,7 @@
 
 namespace TrainModeling
 {
-	public interface IComposite
+	public interface IComposite:IComponent
 	{
 		bool Add(IComponent component);
 		bool Remove(IComponent component);

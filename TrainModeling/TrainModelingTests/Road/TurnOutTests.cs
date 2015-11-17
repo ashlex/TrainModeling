@@ -17,7 +17,7 @@ namespace TrainModeling.Tests
 		[TestMethod()]
 		public void CangeStateTestWihtDefaultConstructor()
 		{
-			IRoadNode turnOuts = new TurnOut();
+			ITurnOut turnOuts = new TurnOut();
 			turnOuts.TimeOfChange = 100;
 			Assert.AreEqual(turnOuts.State, (int)TurOutsState.NOT_DEFINE);
 			turnOuts.ChangeState();
@@ -32,7 +32,7 @@ namespace TrainModeling.Tests
 			int t = 10;
 			IRoadSection leftRoadSection = Mock.Of<IRoadSection>();
 			IRoadSection rightRoadSection = Mock.Of<IRoadSection>();
-			IRoadNode turnOuts = new TurnOut(leftRoadSection, rightRoadSection);
+			ITurnOut turnOuts = new TurnOut(leftRoadSection, rightRoadSection);
 			turnOuts.TimeOfChange = t;
 			Assert.AreEqual((int)TurOutsState.LEFT_ROAD, turnOuts.State);
 
@@ -53,11 +53,11 @@ namespace TrainModeling.Tests
 			int s = 0;
 			IRoadSection leftRoadSection = Mock.Of<IRoadSection>();
 			IRoadSection rightRoadSection = Mock.Of<IRoadSection>();
-			IRoadNode turnOuts = new TurnOut(leftRoadSection, rightRoadSection);
+			ITurnOut turnOuts = new TurnOut(leftRoadSection, rightRoadSection);
 			turnOuts.TimeOfChange = t;
 			var handler = new EventHandler((o, e) =>
 			{
-				s = ((IRoadNode)o).State;
+				s = ((ITurnOut)o).State;
 			});
 			turnOuts.StateChanged += handler;
 			Assert.AreEqual((int)TurOutsState.LEFT_ROAD, turnOuts.State);
