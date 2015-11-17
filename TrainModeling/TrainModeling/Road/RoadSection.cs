@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace TrainModeling
 {
@@ -41,27 +42,10 @@ namespace TrainModeling
 
 		public ICoordinate GetCoordinate(double distance)
 		{
-			int n = _points.RowCount;
-			int i = 0;
-			VectorBuilder<double> vBuilder = Vector<double>.Build;
-			Vector<double> v = vBuilder.Dense(_points.ColumnCount, 0);
-			foreach (Vector<double> enumerateRow in _points.EnumerateRows())
-			{
-				Vector<double> tmp = enumerateRow.Multiply(BernstansBazis(n, i++, distance));
-                v=v.Add(tmp);
-			}
-			return new Coordinate2D(v);
+			return new Coordinate2D(BezierCurve.GetPoint(_points, distance));
 		}
 
-		private double BernstansBazis(int n, int i,double t)
-		{
-			double a = MathNet.Numerics.Fn.Factorial(n);
-			double b = (Fn.Factorial(i)*Fn.Factorial(n - i));
-			double c = a/b;
-			double d = Math.Pow(t, i);
-			double e = Math.Pow(1 - t, n - i);
-            return c * d * e;
-		}
+		
 
 		public event EventHandler StateChanged;
 		public int TimeOfChange { get; set; }
