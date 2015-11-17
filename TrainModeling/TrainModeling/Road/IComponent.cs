@@ -2,6 +2,6 @@
 {
 	public interface IComponent
 	{
-		 
+		int State { get; }
 	}
 }

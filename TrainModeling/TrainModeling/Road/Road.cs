@@ -1,55 +1,54 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using MathNet.Numerics.LinearAlgebra;
 
 namespace TrainModeling
 {
-	public class Road: Composite, IRoad
+	public class Road : Composite, IRoadSection
 	{
-		private Coordinate _coordinateBegin;
-		private Point[] _points;
-
-		public Road(Point[] arrrayPoints)
+		public ICoordinate GetPointBegin()
 		{
-			_points = arrrayPoints;
+			throw new NotImplementedException();
 		}
 
-		public Point GetPointBegin()
+		public ICoordinate GetCoordinate(double distance)
 		{
-			if (_points.Any())
+			throw new NotImplementedException();
+		}
+
+		#region Constructors
+
+		public Road()
+		{
+		}
+
+		#endregion
+
+		#region Filds and properties
+
+		private readonly RoadState _state = RoadState.NOT_DEFINE;
+		public override int State
+		{
+			get { return (int) _state; }
+		}
+
+		public double Length
+		{
+			get
 			{
-				return _points.First();
+				return this.GetChilds().OfType<IRoadSection>().Sum(child => child.Length);
 			}
-
-			return Point.Empty;
 		}
 
-		public Point GetPointEnd()
-		{
-			if (_points.Any())
-			{
-				return _points.ElementAtOrDefault(_points.Length-1);
-			}
+		#endregion
+	}
 
-			return Point.Empty;
-		}
-
-		public Point GetCoordinate(double distance)
-		{
-//			if(distance<0||distance>1)throw new ArgumentOutOfRangeException(ExeptionMessage.Road_DistanceExeption);
-throw new NotImplementedException();
-		}
-
-		public override string ToString()
-		{
-			StringBuilder sb = new StringBuilder();
-			foreach (var point in _points)
-			{
-				sb.AppendLine(String.Format("[{0},{1}]", point.X, point.Y));
-			}
-			return sb.ToString();
-		}
+	public enum RoadState
+	{
+		NOT_DEFINE = 0,
+		FREE = 1,
+		BUZI = 2,
+		NOT_AVAIBLE = 3
 	}
 }

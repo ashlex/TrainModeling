@@ -43,8 +43,8 @@ namespace TrainModeling
 		{
 				double v = _vehicle.Speed;
 				_vehicle.Speed = v + ((double)_vehicle.TractionForce/ (double)_vehicle.Weight)*_interval/1000;
-				_vehicle.Position.ValueCoordinate.X += ((int) v*_interval) +
-				                                       ((_interval*_vehicle.TractionForce)/(2*_vehicle.Weight));
+//				_vehicle.Position.ValueCoordinate.X += ((int) v*_interval) +
+//				                                       ((_interval*_vehicle.TractionForce)/(2*_vehicle.Weight));
 
 				Console.WriteLine("Train speed:" + _vehicle.Speed + ". Position [" + _vehicle.Position + "]");
 				if (_vehicle.Speed >= _vehicle.MaxSpeed)
