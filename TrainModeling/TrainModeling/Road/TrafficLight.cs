@@ -13,8 +13,8 @@ namespace TrainModeling
 				var light = o as TrafficLight;
 				if (light != null)
 				{
-					_changeStrategy.Cange();
-					light._state = _changeStrategy.GeTrafficLightState();
+					_changeStrategy.Change();
+					light._state = _changeStrategy.GetState();
 					OnStateChanged();
 				}
 			}, this).Start();
@@ -39,9 +39,10 @@ namespace TrainModeling
 
 		#region Constructors
 
-		public TrafficLight()
+		public TrafficLight(IFactory factory)
 		{
-			_changeStrategy = new TrafficLightStrategy(this);
+			_changeStrategy = factory.GetStrategyFactory().GetTrafficLightChangingStrategy();
+			_changeStrategy.Component = this;
 		}
 
 		#endregion

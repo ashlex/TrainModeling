@@ -2,15 +2,18 @@
 {
 	public class TrafficLightStrategy:IVariableChangingStrategy<TrafficLightState>
 	{
-		private readonly TrafficLight _trafficLight;
+		private IComponent _trafficLight;
 		private TrafficLightState _trafficLightState;
 
-		public TrafficLightStrategy(TrafficLight trafficLight)
+		public IComponent Component
 		{
-			_trafficLight = trafficLight;
+			set {
+				_trafficLight = value;
+				
+			}
 		}
 
-		public void Cange()
+		public void Change()
 		{
 			switch (_trafficLight.State)
 			{
@@ -29,7 +32,7 @@
 			}
 		}
 
-		public TrafficLightState GeTrafficLightState()
+		public TrafficLightState GetState()
 		{
 			return _trafficLightState;
 		}
