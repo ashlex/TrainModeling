@@ -125,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram3.cd" />
     <None Include="Doc\Documentation.docx" />
     <None Include="packages.config" />
     <None Include="UML\Model.oob" />
