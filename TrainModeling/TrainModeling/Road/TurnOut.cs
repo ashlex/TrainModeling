@@ -1,43 +1,88 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace TrainModeling
 {
-	public enum TurOutsState
+	public interface ITurnOut : IComposite, IVariable { }
+	public class TurnOut : Composite, ITurnOut
 	{
-		LEFT_ROAD=1,
-		RIGHT_ROAD=2,
-		NO_ROAD=0
-	}
-
-	public class TurnOut : Composite,ITurnOuts
-	{
-		private TurOutsState _state=TurOutsState.NO_ROAD;
-		public new int State { get { return (int)_state; } }
-
-		public TurnOut(IRoad leftRoad, IRoad rightRoad)
+		public void ChangeState()
 		{
-			if (leftRoad.GetPointBegin() == rightRoad.GetPointBegin())
+			if (_state != TurOutsState.NOT_DEFINE)
 			{
-				this.Add(leftRoad);
-				this.Add(rightRoad);
-				this._state = TurOutsState.LEFT_ROAD;
+				_previousState = _state;
+				OnStateChanged(TurOutsState.NO_ROAD);
+				new Task(Run, this).Start();
 			}
 		}
-		public TurnOut()
+
+		private void Run(object sender)
+		{
+			//This should be allocated to the strategy
+
+			#region Strategy
+
+			var turnOut = (TurnOut) sender;
+			Thread.Sleep(turnOut.TimeOfChange);
+			turnOut.OnStateChanged(turnOut._previousState != TurOutsState.NO_ROAD
+				? (turnOut._previousState == TurOutsState.LEFT_ROAD ? TurOutsState.RIGHT_ROAD : TurOutsState.LEFT_ROAD)
+				: turnOut._state);
+			#endregion
+		}
+
+		protected virtual void OnStateChanged(TurOutsState state)
+		{
+			_state = state;
+			StateChanged?.Invoke(this,null);
+		}
+
+		#region Constructors
+
+		public TurnOut([NotNull] IRoadSection leftRoadSection, [NotNull] IRoadSection rightRoadSection, TurOutsState state)
+		{
+			if (leftRoadSection == null || rightRoadSection == null) throw new ArgumentNullException();
+			if (leftRoadSection.GetPointBegin() != rightRoadSection.GetPointBegin()) throw new ArgumentException();
+			Add(leftRoadSection);
+			Add(rightRoadSection);
+			_state = state;
+		}
+
+		public TurnOut([NotNull] IRoadSection leftRoadSection, [NotNull] IRoadSection rightRoadSection)
+			: this(leftRoadSection, rightRoadSection, TurOutsState.LEFT_ROAD)
 		{
 		}
 
-		public void CangeState()
+		public TurnOut()
 		{
-			this._state = TurOutsState.NO_ROAD;
-			Task t=new Task(new Action<object>(o =>
-			{
-				Thread.Sleep(5000);
-				((TurnOut) o)._state = TurOutsState.RIGHT_ROAD;
-			}),this);
-			t.Start();
+			_state = TurOutsState.NOT_DEFINE;
 		}
+
+		#endregion
+
+		#region Fields and properties
+
+		private TurOutsState _previousState = TurOutsState.NO_ROAD;
+		private TurOutsState _state;
+		public int TimeOfChange { get; set; }
+
+		public event EventHandler StateChanged;
+
+		public override int State
+		{
+			get { return (int) _state; }
+		}
+
+		#endregion
+	}
+	
+
+	public enum TurOutsState
+	{
+		LEFT_ROAD = 1,
+		RIGHT_ROAD = 2,
+		NO_ROAD = 0,
+		NOT_DEFINE = 3
 	}
 }
