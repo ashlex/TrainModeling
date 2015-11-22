@@ -1,4 +1,6 @@
-﻿namespace TrainModeling
+﻿using TrainModeling.Conditions;
+
+namespace TrainModeling
 {
 	public class TrafficLightStrategy:IVariableChangingStrategy<TrafficLightState>
 	{

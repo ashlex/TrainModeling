@@ -1,5 +1,6 @@
 ﻿using System;
 using log4net;
+using TrainModeling.Conditions;
 
 namespace TrainModeling
 {

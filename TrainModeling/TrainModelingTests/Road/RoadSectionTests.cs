@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using Moq;
+using TrainModeling.Conditions;
 
 namespace TrainModeling.Tests
 {

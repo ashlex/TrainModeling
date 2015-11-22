@@ -90,6 +90,10 @@
     <Compile Include="ICoordinate.cs" />
     <Compile Include="Road\Component.cs" />
     <Compile Include="Road\Composite.cs" />
+    <Compile Include="Road\Conditions\RoadSectionState.cs" />
+    <Compile Include="Road\Conditions\RoadState.cs" />
+    <Compile Include="Road\Conditions\TrafficLightState.cs" />
+    <Compile Include="Road\Conditions\TurOutsState.cs" />
     <Compile Include="Road\DefaultFactory.cs" />
     <Compile Include="Road\DefaultStrategyFactory.cs" />
     <Compile Include="Road\IComponent.cs" />

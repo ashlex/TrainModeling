@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using TrainModeling.Conditions;
 
 namespace TrainModeling
 {
@@ -77,12 +78,4 @@ namespace TrainModeling
 		#endregion
 	}
 	
-
-	public enum TurOutsState
-	{
-		LEFT_ROAD = 1,
-		RIGHT_ROAD = 2,
-		NO_ROAD = 0,
-		NOT_DEFINE = 3
-	}
 }

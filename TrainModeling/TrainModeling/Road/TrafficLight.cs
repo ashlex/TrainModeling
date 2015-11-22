@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using TrainModeling.Conditions;
 
 namespace TrainModeling
 {
@@ -49,12 +50,5 @@ namespace TrainModeling
 
 
 	}
-
-	public enum TrafficLightState
-	{
-		UNDEFINED = 0,
-		GREEN = 1,
-		YELLOW = 2,
-		RED = 3
-	}
+	
 }

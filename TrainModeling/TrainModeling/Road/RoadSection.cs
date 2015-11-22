@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
+using TrainModeling.Conditions;
 
 namespace TrainModeling
 {
@@ -80,11 +81,5 @@ namespace TrainModeling
 			StateChanged?.Invoke(this, null);
 		}
 	}
-
-	public enum RoadSectionState
-	{
-		UNDEFINE = 0,
-		FREE = 1,
-		BUSY = 2
-	}
+	
 }
