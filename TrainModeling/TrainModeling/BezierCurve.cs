@@ -21,6 +21,11 @@ namespace TrainModeling
 			{-2, 2, 0},
 			{ 1, 0, 0}
 		});
+		public readonly static Matrix<double> MB2D = DenseMatrix.OfArray(new double[,]
+		{
+			{ 2,-4, 2},
+			{-1, 2, 0}
+		});
 
 		public readonly static Matrix<double> MB1 = DenseMatrix.OfArray(new double[,]
 		{
@@ -36,7 +41,7 @@ namespace TrainModeling
 
 		public static Vector<double> GetPoint(Matrix<double>_points,double distance )
 		{
-			switch (_points.ColumnCount)
+			switch (_points.RowCount)
 			{
 				case 4:
 					return GetPoint3(_points, distance);
@@ -83,6 +88,15 @@ namespace TrainModeling
 				{Math.Pow(distance,2),distance,1}
 			});
 			v = v.Multiply(MB2).Multiply(_points);
+			return v.Row(0);
+		}
+		public static Vector<double> GetPointDef2(Matrix<double>_points,double distance )
+		{
+			Matrix<double> v = DenseMatrix.OfArray(new double[,]
+			{ 
+				{distance,1}
+			});
+			v = v.Multiply(MB2D).Multiply(_points);
 			return v.Row(0);
 		} 
 		public static Vector<double> GetPoint3(Matrix<double>_points,double distance )
