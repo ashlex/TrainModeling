@@ -34,6 +34,16 @@ namespace TrainModeling
 			get { return (int) _state; }
 		}
 
+		public override void EnterInOperation()
+		{
+			throw new NotImplementedException();
+		}
+
+		public override void Decommission()
+		{
+			throw new NotImplementedException();
+		}
+
 		public double Length
 		{
 			get

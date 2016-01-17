@@ -4,9 +4,9 @@ namespace TrainModeling
 {
 	public class DefaultStrategyFactory:IStrategyFactory
 	{
-		public IVariableChangingStrategy<RoadSectionState> GetRoadSectionChangingStrategy()
+		public IVariableChangingStrategy<RoadSectionState> GetRoadSectionChangingStrategy(IRoadSection roadSection)
 		{
-			return new RoadSectionStrategy();
+			return new RoadSectionStrategy(roadSection);
 		}
 
 		public IVariableChangingStrategy<TrafficLightState> GetTrafficLightChangingStrategy()

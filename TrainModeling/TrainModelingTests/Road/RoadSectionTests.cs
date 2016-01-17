@@ -28,7 +28,7 @@ namespace TrainModeling.Tests
 
 			factory = new Mock<IFactory>();
 			sFactory = new Mock<IStrategyFactory>();
-			sFactory.Setup(o => o.GetRoadSectionChangingStrategy()).Returns(roadStrategy.Object);
+			sFactory.Setup(o => o.GetRoadSectionChangingStrategy(null)).Returns(roadStrategy.Object);
 			factory.Setup(factory1 => factory1.GetStrategyFactory())
 				.Returns(sFactory.Object);
 

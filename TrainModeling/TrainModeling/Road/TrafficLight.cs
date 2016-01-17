@@ -34,6 +34,15 @@ namespace TrainModeling
 		public int TimeOfChange { get; set; }
 
 		public override int State { get { return (int) _state; } }
+		public override void EnterInOperation()
+		{
+			throw new NotImplementedException();
+		}
+
+		public override void Decommission()
+		{
+			throw new NotImplementedException();
+		}
 
 		#endregion
 

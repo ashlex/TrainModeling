@@ -26,16 +26,14 @@ namespace TrainModeling
 		public RoadSection(IFactory factory)
 		{
 			_state = RoadSectionState.UNDEFINE;
-			_strategy = factory.GetStrategyFactory().GetRoadSectionChangingStrategy();
-			_strategy.Component = this;
+			_strategy = factory.GetStrategyFactory().GetRoadSectionChangingStrategy(this);
 			Length = 10;
 		}
 
 		public RoadSection(IFactory factory, Matrix<double> points)
 		{
 			_state = RoadSectionState.FREE;
-			_strategy = factory.GetStrategyFactory().GetRoadSectionChangingStrategy();
-			_strategy.Component = this;
+			_strategy = factory.GetStrategyFactory().GetRoadSectionChangingStrategy(this);
 			_points = points;
 			IEnumerable<Vector<double>> row = _points.EnumerateRows();
 			foreach (Vector<double> vector in row)
@@ -73,6 +71,15 @@ namespace TrainModeling
 					}
 				}
 			}, this).Start();
+		}
+
+		public override void EnterInOperation()
+		{
+			OnStateChanged(RoadSectionState.FREE);
+		}
+		public override void Decommission()
+		{
+			OnStateChanged(RoadSectionState.UNDEFINE);
 		}
 
 		protected virtual void OnStateChanged(RoadSectionState state)

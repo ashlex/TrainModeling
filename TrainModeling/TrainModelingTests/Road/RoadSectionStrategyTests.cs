@@ -14,27 +14,87 @@ namespace TrainModeling.Tests
 	public class RoadSectionStrategyTests
 	{
 		[TestMethod()]
-		public void RoadSectionStrategyTest()
+		public void GetState_ByDefault_IsUndefine()
 		{
-			var rs = new Mock<IRoadSection>();
-			rs.Setup(o => o.State).Returns((int)RoadSectionState.FREE);
-			Assert.AreEqual((int)RoadSectionState.FREE, rs.Object.State);
-			
-			IVariableChangingStrategy<RoadSectionState> t=new RoadSectionStrategy();
-			Assert.AreEqual(RoadSectionState.FREE,t.GetState());
+			IVariableChangingStrategy<RoadSectionState> t=CreateRoadSectionStrategy(RoadSectionState.UNDEFINE);
+			Assert.AreEqual(RoadSectionState.UNDEFINE,t.GetState());
 		}
 
 		[TestMethod()]
-		public void CangeTest()
+		public void GetState_WhenComponentUndefine_IsUndefine()
 		{
-			var rs = new Mock<IRoadSection>();
-			rs.Setup(o => o.State).Returns((int)RoadSectionState.FREE);
-			Assert.AreEqual((int)RoadSectionState.FREE, rs.Object.State);
-			IVariableChangingStrategy<RoadSectionState> t = new RoadSectionStrategy();
+			IVariableChangingStrategy<RoadSectionState> t= CreateRoadSectionStrategy(RoadSectionState.UNDEFINE);
+			Assert.AreEqual(RoadSectionState.UNDEFINE,t.GetState());
+			var comp=new Mock<IComponent>();
+			comp.Setup(component => component.State).Returns((int) RoadSectionState.UNDEFINE);
+			t.Component = comp.Object;
+			Assert.AreEqual(RoadSectionState.UNDEFINE, t.GetState());
+		}
+
+		[TestMethod()]
+		public void GetState_WhenComponentFree_IsFree()
+		{
+			IVariableChangingStrategy<RoadSectionState> t= CreateRoadSectionStrategy(RoadSectionState.FREE);
+			Assert.AreEqual(RoadSectionState.FREE,t.GetState());
+			var comp=new Mock<IComponent>();
+			comp.Setup(component => component.State).Returns((int) RoadSectionState.FREE);
+			t.Component = comp.Object;
+			Assert.AreEqual(RoadSectionState.FREE, t.GetState());
+		}
+
+		[TestMethod()]
+		public void GetState_WhenComponentBusy_IsBusy()
+		{
+			IVariableChangingStrategy<RoadSectionState> t=CreateRoadSectionStrategy(RoadSectionState.BUSY);
+			Assert.AreEqual(RoadSectionState.BUSY,t.GetState());
+			var comp=new Mock<IComponent>();
+			comp.Setup(component => component.State).Returns((int) RoadSectionState.BUSY);
+			t.Component = comp.Object;
+			Assert.AreEqual(RoadSectionState.BUSY, t.GetState());
+		}
+		[TestMethod()]
+		public void Change_ByDefault_IsUndefine()
+		{
+			IVariableChangingStrategy<RoadSectionState> t= CreateRoadSectionStrategy(RoadSectionState.UNDEFINE);
+			Assert.AreEqual(RoadSectionState.UNDEFINE,t.GetState());
+			t.Change();
+			Assert.AreEqual(RoadSectionState.UNDEFINE, t.GetState());
+		}
+
+
+		[TestMethod()]
+		public void Change_WhenComponentFree_IsBusy()
+		{
+			IVariableChangingStrategy<RoadSectionState> t = CreateRoadSectionStrategy(RoadSectionState.FREE);
 			Assert.AreEqual(RoadSectionState.FREE, t.GetState());
 			t.Change();
 			Assert.AreEqual(RoadSectionState.BUSY, t.GetState());
 		}
-		
-	}
+
+		[TestMethod()]
+		public void Change_WhenComponentBusy_IsFree()
+		{
+			IVariableChangingStrategy<RoadSectionState> t = CreateRoadSectionStrategy(RoadSectionState.BUSY);
+			Assert.AreEqual(RoadSectionState.BUSY, t.GetState());
+			t.Change();
+			Assert.AreEqual(RoadSectionState.FREE, t.GetState());
+		}
+
+		[TestMethod()]
+		public void Change_WhenComponentUndefine_IsUndefine()
+		{
+			IVariableChangingStrategy<RoadSectionState> t = CreateRoadSectionStrategy(RoadSectionState.UNDEFINE);
+			Assert.AreEqual(RoadSectionState.UNDEFINE, t.GetState());
+			t.Change();
+			Assert.AreEqual(RoadSectionState.UNDEFINE, t.GetState());
+		}
+
+
+		private RoadSectionStrategy CreateRoadSectionStrategy(RoadSectionState componentState)
+		{
+			var comp = new Mock<IComponent>();
+			comp.Setup(component => component.State).Returns((int)componentState);
+			return new RoadSectionStrategy(comp.Object);
+		}
+    }
 }

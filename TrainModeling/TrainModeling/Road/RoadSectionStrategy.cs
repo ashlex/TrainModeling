@@ -4,11 +4,11 @@ using TrainModeling.Conditions;
 
 namespace TrainModeling
 {
-	public class RoadSectionStrategy:IVariableChangingStrategy<RoadSectionState>
+	public class RoadSectionStrategy : IVariableChangingStrategy<RoadSectionState>
 	{
 		private RoadSectionState _newState;
 		private IComponent _component;
-		private static readonly ILog log = LogManager.GetLogger(typeof(RoadSectionStrategy));
+		private static readonly ILog log = LogManager.GetLogger(typeof (RoadSectionStrategy));
 
 		public IComponent Component
 		{
@@ -18,10 +18,15 @@ namespace TrainModeling
 				Enum.TryParse(_component.State.ToString(), out _newState);
 			}
 		}
+
+		public RoadSectionStrategy(IComponent component)
+		{
+			Component = component;
+		}
+
 		/// <summary>
-		/// Select new state.
+		/// Select new state.If component is undefine then 
 		/// </summary>
-		/// <exception cref="NullReferenceException">Throws if field of _component is not initialized</exception>
 		public void Change()
 		{
 			if (_component != null)
@@ -34,12 +39,15 @@ namespace TrainModeling
 					case (int) RoadSectionState.BUSY:
 						_newState = RoadSectionState.FREE;
 						break;
+					default:
+						_newState = RoadSectionState.UNDEFINE;
+						break;
 				}
 			}
 			else
 			{
+				_newState = RoadSectionState.UNDEFINE;
 				log.Error("Error to executing a Change method. Field of _component is not initialized.");
-				throw new NullReferenceException("Field of _component is not initialized.");
 			}
 		}
 
