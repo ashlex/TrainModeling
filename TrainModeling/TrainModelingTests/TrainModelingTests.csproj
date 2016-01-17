@@ -68,13 +68,13 @@
     <Compile Include="Road\TurnOutTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TrainModeling\TrainModeling.csproj">
-      <Project>{2A0E1302-1856-40FD-92CA-B0C2E7D9B781}</Project>
-      <Name>TrainModeling</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\TrainModeling\TrainModeling.csproj">
+      <Project>{2a0e1302-1856-40fd-92ca-b0c2e7d9b781}</Project>
+      <Name>TrainModeling</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
